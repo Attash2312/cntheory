@@ -136,10 +136,23 @@ A SYN flooding attack is a type of Denial-of-Service (DoS) attack where an attac
 ### Diagram
 ```mermaid
 graph TD
-  Attacker -- SYN --> Server
-  Server -- SYN-ACK --> Attacker (no response)
-  Attacker -- SYN --> Server
-  Server -- SYN-ACK --> Attacker (no response)
+    A[Attacker] -->|1. SYN with spoofed IP| S[Server]
+    S -->|2. SYN-ACK to spoofed IP| S
+    S -->|3. Allocates resources| S
+    S -->|4. Waits for ACK| S
+    
+    A -->|5. Thousands more SYN packets| S
+    S -->|6. Backlog queue fills| S
+    S -->|7. Resources exhausted| S
+    
+    L[Legitimate Client] -->|8. SYN request| S
+    S -->|9. Queue full - Drops| L
+    
+    subgraph "Server State"
+        R1[Connection Table Full]
+        R2[Memory Exhausted]
+        R3[Backlog Queue Full]
+    end
 ```
 
 ### Real-World Example
