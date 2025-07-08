@@ -42,17 +42,43 @@ A computer network is a collection of interconnected devices (computers, phones,
 ## Network Topologies (Expanded with Pros/Cons)
 | Topology | Diagram | Pros | Cons | Use Case |
 |----------|---------|------|------|----------|
-| Star | [PC]--[Switch]--[PC] | Easy to manage, isolate faults | Central point failure | Most LANs |
-| Bus | [PC]---[Cable]---[PC] | Simple, cheap | Collisions, hard to troubleshoot | Early Ethernet |
-| Ring | [PC]--[PC]--[PC]--(loop) | Predictable, orderly | One break = network down | Token Ring |
-| Mesh | [PC]-[PC]-[PC] (all connected) | Redundant, reliable | Expensive, complex | Backbone, WAN |
+| Star | See below | Easy to manage, isolate faults | Central point failure | Most LANs |
+| Bus | See below | Simple, cheap | Collisions, hard to troubleshoot | Early Ethernet |
+| Ring | See below | Predictable, orderly | One break = network down | Token Ring |
+| Mesh | See below | Redundant, reliable | Expensive, complex | Backbone, WAN |
 | Hybrid | Mix of above | Flexible | Complex | Modern networks |
 
-**ASCII Diagrams:**
-- Star: See above
-- Bus: See above
-- Ring: See above
-- Mesh: See above
+**Mermaid Diagrams:**
+
+- Star:
+```mermaid
+graph TD
+  S1[Switch]
+  PC1[PC] -- S1
+  PC2[PC] -- S1
+  PC3[PC] -- S1
+  PC4[PC] -- S1
+```
+- Bus:
+```mermaid
+graph LR
+  PC1[PC] -- Cable --- PC2[PC] -- Cable --- PC3[PC]
+```
+- Ring:
+```mermaid
+graph LR
+  PC1[PC] -- PC2[PC] -- PC3[PC] -- PC1
+```
+- Mesh:
+```mermaid
+graph TD
+  PC1[PC] -- PC2[PC]
+  PC1 -- PC3[PC]
+  PC2 -- PC3
+  PC1 -- PC4[PC]
+  PC2 -- PC4
+  PC3 -- PC4
+```
 
 **Common Confusion:**
 - Star and mesh both offer redundancy, but mesh is much more expensive.
@@ -108,9 +134,17 @@ A protocol is a set of rules for how data is sent, received, and interpreted on 
 | Data Link (2)    | Provides local delivery, framing, MAC addressing, and error detection/correction.          | Ethernet, WiFi, PPP, Switch       | Address on envelope           | Mixing up with Physical |
 | Physical (1)     | Transmits raw bits over physical medium (cables, radio, fiber).                           | Ethernet cable, fiber, WiFi radio | Wires, light, radio           | Forgetting this is just signals |
 
-**ASCII Flowchart:**
-```
-[App]→[Pres]→[Sess]→[Trans]→[Net]→[DL]→[Phys]
+**Mermaid Flowchart: OSI Model**
+```mermaid
+graph TD
+  App[Application]
+  Pres[Presentation]
+  Sess[Session]
+  Trans[Transport]
+  Net[Network]
+  DL[Data Link]
+  Phys[Physical]
+  App --> Pres --> Sess --> Trans --> Net --> DL --> Phys
 ```
 
 **Real-World Analogy:**
@@ -122,19 +156,15 @@ A protocol is a set of rules for how data is sent, received, and interpreted on 
 - **Encapsulation:** Each layer adds its own header (like putting a letter in an envelope, then a box, then a shipping crate).
 - **Decapsulation:** At the receiver, each layer removes its header, like unwrapping a package.
 
-**Step-by-Step Example:**
-1. You send a message in a chat app (Application layer).
-2. The message is formatted (Presentation), session is managed (Session), broken into segments (Transport), given an IP address (Network), put into frames (Data Link), and sent as signals (Physical).
-3. At the other end, the process is reversed.
-
-**ASCII Diagram:**
-```
-[App Data]
-  ↓ add Pres header
-[Pres|App Data]
-  ↓ add Sess header
-[Sess|Pres|App Data]
-  ...
+**Mermaid Flowchart: Encapsulation/Decapsulation**
+```mermaid
+graph TD
+  A[App Data] --> B[+Pres Header]
+  B --> C[+Sess Header]
+  C --> D[+Trans Header]
+  D --> E[+Net Header]
+  E --> F[+DL Header]
+  F --> G[+Phys Bits]
 ```
 
 **Common Confusion:**

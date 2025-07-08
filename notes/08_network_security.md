@@ -30,14 +30,18 @@ Network security protects data as it travels, ensuring confidentiality, integrit
 
 ---
 
-## Cryptography (With ASCII Diagrams & Expanded)
+## Cryptography (With Mermaid Diagrams & Expanded)
 - **Symmetric:** Same key for encrypt/decrypt (e.g., AES)
 - **Asymmetric:** Public/private keys (e.g., RSA)
 - **Hashing:** One-way function for integrity (e.g., SHA-256)
 
-**ASCII Diagram:**
-```
-[Message]--(Encrypt w/Key)-->[Ciphertext]--(Decrypt w/Key)-->[Message]
+**Mermaid Diagram: Symmetric vs Asymmetric Encryption**
+```mermaid
+graph TD
+  M[Message] -- Encrypt w/Key --> C[Ciphertext]
+  C -- Decrypt w/Key --> M2[Message]
+  M3[Message] -- Encrypt w/Public Key --> C2[Ciphertext]
+  C2 -- Decrypt w/Private Key --> M4[Message]
 ```
 
 **Edge Case:**
@@ -46,10 +50,14 @@ Network security protects data as it travels, ensuring confidentiality, integrit
 ---
 
 ## Authentication (Step-by-Step & Expanded)
-1. User provides credentials (password, fingerprint)
-2. System checks credentials
-3. Access granted if match
-4. May use multi-factor (MFA) for extra security
+**Mermaid Diagram: Authentication Process**
+```mermaid
+graph TD
+  U[User] -- Credentials --> S[System]
+  S -- Check --> DB[Credential Store]
+  DB -- Valid? --> S
+  S -- Access Granted --> U
+```
 
 **Mnemonic:** "Authentication = Are you who you say you are?"
 
@@ -77,13 +85,14 @@ Network security protects data as it travels, ensuring confidentiality, integrit
 ---
 
 ## Firewalls & Intrusion Detection Systems (IDS) (Expanded)
-- **Firewall:** Blocks unwanted traffic, enforces security policy
-- **IDS:** Detects suspicious activity, alerts admin
-- **IPS (Intrusion Prevention System):** Blocks attacks in real time
-
-**ASCII Diagram:**
-```
-[Internet]--[Firewall]--[Your Network]
+**Mermaid Diagram: Firewall and IDS**
+```mermaid
+graph TD
+  Internet[Internet] -- Traffic --> FW[Firewall]
+  FW -- Allowed Traffic --> Net[Your Network]
+  FW -- Blocked Traffic -.-> Trash[Blocked]
+  Net -- Suspicious Activity --> IDS[IDS]
+  IDS -- Alert --> Admin[Admin]
 ```
 
 **Edge Case:**
@@ -92,8 +101,13 @@ Network security protects data as it travels, ensuring confidentiality, integrit
 ---
 
 ## Real-World Example: Email Security (Expanded)
-- Email uses digital signatures for integrity, encryption for confidentiality
-- Spam filters and DMARC prevent phishing
+**Mermaid Diagram: Secure Email Flow**
+```mermaid
+graph TD
+  Sender[Sender] -- Encrypt & Sign --> Mail[Mail Server]
+  Mail -- Encrypted Email --> Recipient[Recipient]
+  Recipient -- Decrypt & Verify --> Inbox[Inbox]
+```
 
 ---
 

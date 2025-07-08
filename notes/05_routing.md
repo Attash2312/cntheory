@@ -30,13 +30,14 @@ Routing is the process of finding the best path for data to travel across networ
 - **OSPF:** Advanced, uses link-state, supports large networks.
 - **BGP:** Connects ISPs, global Internet, uses path vector.
 
-**ASCII Diagram: Routing Example**
-```
-[A]---1---[B]---1---[C]
- |         |
- 2         1
- |         |
-[D]-------[E]
+**Mermaid Diagram: Routing Example**
+```mermaid
+graph TD
+  A[A] -- 1 --> B[B]
+  B -- 1 --> C[C]
+  A -- 2 --> D[D]
+  D -- 1 --> E[E]
+  B -- 1 --> E
 ```
 - Dijkstra finds A→C as A-B-C (cost 2)
 

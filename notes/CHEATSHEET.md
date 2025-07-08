@@ -82,30 +82,59 @@
 
 ---
 
-## Topologies (ASCII Diagrams, Expanded)
+## Topologies (Mermaid Diagrams, Expanded)
 - **Star:**
-```
-      [PC]
-        |
-[PC]--[Switch]--[PC]
-        |
-      [PC]
+```mermaid
+graph TD
+  S1[Switch]
+  PC1[PC] -- S1
+  PC2[PC] -- S1
+  PC3[PC] -- S1
+  PC4[PC] -- S1
 ```
 - **Bus:**
-```
-[PC]---[Cable]---[PC]---[PC]
+```mermaid
+graph LR
+  PC1[PC] -- Cable --- PC2[PC] -- Cable --- PC3[PC]
 ```
 - **Ring:**
-```
-[PC]--[PC]--[PC]
-  |         |
-  +---------+
+```mermaid
+graph LR
+  PC1[PC] -- PC2[PC] -- PC3[PC] -- PC1
 ```
 - **Mesh:**
+```mermaid
+graph TD
+  PC1[PC] -- PC2[PC]
+  PC1 -- PC3[PC]
+  PC2 -- PC3
+  PC1 -- PC4[PC]
+  PC2 -- PC4
+  PC3 -- PC4
 ```
-[PC]---[PC]
- | \   / |
-[PC]-[PC]
+
+## Protocol Stack (Mermaid Diagram)
+```mermaid
+graph TD
+  App[Application]
+  Pres[Presentation]
+  Sess[Session]
+  Trans[Transport]
+  Net[Network]
+  DL[Data Link]
+  Phys[Physical]
+  App --> Pres --> Sess --> Trans --> Net --> DL --> Phys
+```
+
+## Encapsulation/Decapsulation (Mermaid Diagram)
+```mermaid
+graph TD
+  A[App Data] --> B[+Pres Header]
+  B --> C[+Sess Header]
+  C --> D[+Trans Header]
+  D --> E[+Net Header]
+  E --> F[+DL Header]
+  F --> G[+Phys Bits]
 ```
 
 ---

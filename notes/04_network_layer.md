@@ -48,13 +48,14 @@ The network layer is responsible for moving packets between devices across diffe
 - **OSPF (Open Shortest Path First):** Advanced, uses link-state
 - **BGP (Border Gateway Protocol):** Connects different ISPs (the Internet backbone)
 
-**ASCII Diagram: Shortest Path Example**
-```
-[A]---1---[B]---1---[C]
- |         |
- 2         1
- |         |
-[D]-------[E]
+**Mermaid Diagram: Shortest Path Example**
+```mermaid
+graph TD
+  A[A] -- 1 --> B[B]
+  B -- 1 --> C[C]
+  A -- 2 --> D[D]
+  D -- 1 --> E[E]
+  B -- 1 --> E
 ```
 - Dijkstra finds A→C as A-B-C (cost 2)
 

@@ -16,9 +16,12 @@ These are important concepts and protocols that go beyond the basics, often appe
 - **RPF (Reverse Path Forwarding):** Prevents loops in multicast
 - **IGMP (Internet Group Management Protocol):** Manages group membership
 
-**ASCII Diagram:**
-```
-[Source]--[Router1]--[Router2]--[Receivers]
+**Mermaid Diagram: Multicast Routing**
+```mermaid
+graph TD
+  Source[Source] -- Data --> R1[Router1]
+  R1 -- Data --> R2[Router2]
+  R2 -- Data --> Recv[Receivers]
 ```
 
 **Mnemonic:** "DVMRP = Distance Vector, PIM = Protocol Independent, RPF = Reverse Path, IGMP = Group Management"
@@ -67,9 +70,10 @@ These are important concepts and protocols that go beyond the basics, often appe
 - Combines transport and security, reduces latency
 - Uses UDP as its base, supports multiplexing and connection migration
 
-**ASCII Diagram:**
-```
-[Client]--QUIC-->[Server]
+**Mermaid Diagram: QUIC Protocol**
+```mermaid
+graph TD
+  Client[Client] -- QUIC --> Server[Server]
 ```
 
 **Edge Case:**

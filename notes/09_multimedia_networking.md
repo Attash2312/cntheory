@@ -149,4 +149,24 @@ Multimedia networking delivers audio, video, and voice over networks. It require
 
 ---
 
+## Mermaid Diagram: Streaming Video via CDN
+```mermaid
+graph TD
+  User[User] -- Request --> CDN[CDN Server]
+  CDN -- Fetch --> Origin[Origin Server]
+  CDN -- Stream --> User
+```
+
+## Mermaid Diagram: VoIP Call Flow
+```mermaid
+sequenceDiagram
+  participant Caller
+  participant Callee
+  Caller->>Callee: SIP INVITE
+  Callee-->>Caller: SIP 200 OK
+  Caller->>Callee: RTP Media
+```
+
+---
+
 # (This file is now maximally detailed, beginner-to-expert, and exam-ready. All important and helpful content is restored and expanded for easy understanding and memorization!) 

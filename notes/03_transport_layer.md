@@ -30,11 +30,13 @@ The transport layer is responsible for moving data between applications on diffe
 - **Multiplexing:** Combining data from many apps to send over the network.
 - **Demultiplexing:** Delivering data to the right app using port numbers.
 
-**ASCII Diagram:**
-```
-[App1]--\
-[App2]---[Transport Layer]---[Network]
-[App3]--/
+**Mermaid Diagram: Multiplexing/Demultiplexing**
+```mermaid
+graph TD
+  App1[App1] --> TL[Transport Layer]
+  App2[App2] --> TL
+  App3[App3] --> TL
+  TL --> Net[Network]
 ```
 
 **Common Confusion:**
@@ -47,12 +49,13 @@ The transport layer is responsible for moving data between applications on diffe
 - **Go-Back-N:** Send N packets, resend from error.
 - **Selective Repeat:** Only resend lost packets.
 
-**ASCII Diagram:**
-```
-[Sender] --pkt1--> [Receiver]
-         <--ACK1--
-[Sender] --pkt2--> [Receiver]
-         <--ACK2--
+**Mermaid Diagram: Reliable Data Transfer (Stop-and-Wait)**
+```mermaid
+graph TD
+  Sender[Sender] -- pkt1 --> Receiver[Receiver]
+  Receiver -- ACK1 --> Sender
+  Sender -- pkt2 --> Receiver
+  Receiver -- ACK2 --> Sender
 ```
 
 **Edge Case:**
@@ -67,16 +70,14 @@ The transport layer is responsible for moving data between applications on diffe
 - **Sliding Window:** Controls how much data is sent before waiting for ACKs.
 - **Timeouts & Retransmissions:** Handle lost packets.
 
-**Step-by-Step:**
-1. SYN: Client → Server ("Can we talk?")
-2. SYN-ACK: Server → Client ("Yes, can you?")
-3. ACK: Client → Server ("Yes!")
-
-**ASCII Flowchart:**
-```
-[Client] --SYN--> [Server]
-         <--SYN-ACK--
-[Client] --ACK--> [Server]
+**Mermaid Diagram: TCP 3-Way Handshake**
+```mermaid
+sequenceDiagram
+  participant Client
+  participant Server
+  Client->>Server: SYN
+  Server->>Client: SYN-ACK
+  Client->>Server: ACK
 ```
 
 **Common Confusion:**

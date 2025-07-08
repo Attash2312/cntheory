@@ -73,10 +73,11 @@ A network application is any software that uses the network to communicate with 
 3. DNS replies with the IP address.
 4. Your browser connects to that IP.
 
-**ASCII Diagram:**
-```
-[You] --DNS Query--> [DNS Server]
-      <--IP Address--
+**Mermaid Diagram: DNS Query**
+```mermaid
+graph TD
+  You[You] -- DNS Query --> DNS[DNS Server]
+  DNS -- IP Address --> You
 ```
 
 **Edge Case:**
@@ -111,9 +112,11 @@ A network application is any software that uses the network to communicate with 
 2. Request goes to CDN server nearby.
 3. Video streams from there for speed.
 
-**ASCII Diagram:**
-```
-[You] --Request--> [CDN Server Nearby] --Fetch--> [Main Server]
+**Mermaid Diagram: CDN Video Streaming**
+```mermaid
+graph TD
+  You[You] -- Request --> CDN[CDN Server Nearby]
+  CDN -- Fetch --> Main[Main Server]
 ```
 
 **Real-World Example:**
